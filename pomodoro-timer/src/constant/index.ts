@@ -8,10 +8,10 @@ export type Tab = {
 export const tabs: Tab[] = [
   {
     title: "Pomodoro",
-    defaultTime: 1,
+    defaultTime: 25,
   },
   {
     title: "Break",
-    defaultTime: 1,
+    defaultTime: 5,
   },
 ];

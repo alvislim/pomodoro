@@ -1,34 +1,27 @@
 import {
-  //   Flex,
-  //   useMultiStyleConfig,
-  //   Button,
   Tab,
   Tabs,
   TabList,
   TabPanels,
   TabPanel,
-  useColorModeValue,
   Text,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { tabs } from "@/constant";
 import TimerCountDown from "./timer-count-down";
 
-export default function PomoTimer() {
-  //   const styles = useMultiStyleConfig("PomoTimerStyle", {});
+type Props = {
+  tabIndex: number;
+  setTabIndex: (val: number) => void;
+};
+export default function PomoTimer(props: Props) {
+  const { tabIndex, setTabIndex } = props;
+
   const [start, setStart] = useState<boolean>(false);
-  const [tabIndex, setTabIndex] = useState<number>(0);
   const [minutes, setMinutes] = useState<number>(tabs[tabIndex].defaultTime);
   const [seconds, setSeconds] = useState<number>(0);
   const [pomoCompleted, setPomoCompleted] = useState<number>(0);
   const [breaksCompleted, setBreaksCompleted] = useState<number>(0);
-
-  const colors = useColorModeValue(
-    ["red.50", "teal.50"],
-    ["red.900", "teal.900"]
-  );
-
-  const bg = colors[tabIndex];
 
   const onStartEvent = () => {
     setStart(!start);
@@ -48,7 +41,7 @@ export default function PomoTimer() {
     if (minutes === 0 && seconds === 0) {
       reset();
     } else if (seconds === 0) {
-      setSeconds(2);
+      setSeconds(59);
       setMinutes((minutes) => minutes - 1);
     } else {
       setSeconds((second) => second - 1);
@@ -89,11 +82,12 @@ export default function PomoTimer() {
       isFitted
       isLazy
       onChange={(index) => setTabIndex(index)}
-      bg={bg}
+      background='rgba(255, 255, 255, 0.1)'
       borderRadius='6px'
       p='2rem 1rem'
       boxShadow='rgba(0, 0, 0, 0.1) 0px 10px 50px'
-      aria-selected>
+      aria-selected
+      maxW='480px'>
       <TabList w='100%'>
         {tabs.map((item, index) => {
           return (
@@ -107,7 +101,6 @@ export default function PomoTimer() {
           );
         })}
       </TabList>
-      {/* <Flex __css={styles.flexContainer}> */}
       <TabPanels>
         {tabs.map((_, index) => {
           return (
@@ -131,7 +124,6 @@ export default function PomoTimer() {
           );
         })}
       </TabPanels>
-      {/* </Flex> */}
     </Tabs>
   );
 }

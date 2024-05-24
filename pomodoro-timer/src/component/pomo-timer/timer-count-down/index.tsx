@@ -1,5 +1,4 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { Button, Stack, Text } from "@chakra-ui/react";
 
 type Props = {
   start: boolean;
@@ -20,7 +19,7 @@ export default function TimerCountDown(props: Props) {
         {seconds.toString().padStart(2, "0")}
       </Text>
 
-      <Flex gap='1rem' p='1rem'>
+      <Stack direction='row' spacing={4}>
         <Button
           size='lg'
           colorScheme='orange'
@@ -35,7 +34,7 @@ export default function TimerCountDown(props: Props) {
           variant='outline'>
           Reset
         </Button>
-      </Flex>
+      </Stack>
     </>
   );
 }
