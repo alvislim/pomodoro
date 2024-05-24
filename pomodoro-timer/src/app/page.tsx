@@ -11,7 +11,7 @@ export default function Home() {
 
   const colors = useColorModeValue(
     ["red.100", "teal.50"],
-    ["red.900", "teal.900"]
+    ["red.700", "teal.900"]
   );
 
   const bg = colors[tabIndex];
